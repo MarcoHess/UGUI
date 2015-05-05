@@ -5282,10 +5282,19 @@ void UG_Update( void )
          gui->active_window = gui->next_window;
 
          /* Do we need to draw an inactive title? */
-         if ( (gui->last_window->style & WND_STYLE_SHOW_TITLE) && (gui->last_window->state & WND_STATE_VISIBLE) )
+         if ( (gui->last_window != NULL)
+              &&
+              (gui->last_window->style & WND_STYLE_SHOW_TITLE)
+              &&
+              (gui->last_window->state & WND_STATE_VISIBLE) )
          {
             /* Do both windows differ in size */
-            if ( (gui->last_window->xs != gui->active_window->xs) || (gui->last_window->xe != gui->active_window->xe) || (gui->last_window->ys != gui->active_window->ys) || (gui->last_window->ye != gui->active_window->ye) )
+            if ( (gui->last_window->xs != gui->active_window->xs) 
+			     || 
+			     (gui->last_window->xe != gui->active_window->xe) 
+			     || 
+				 (gui->last_window->ys != gui->active_window->ys) 
+			     || (gui->last_window->ye != gui->active_window->ye) )
             {
                /* Redraw title of the last window */
                _UG_WindowDrawTitle( gui->last_window );
